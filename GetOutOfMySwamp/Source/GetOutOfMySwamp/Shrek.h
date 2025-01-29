@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "PlayerStateManager.h"
 #include "Shrek.generated.h"
 
 
@@ -28,6 +30,11 @@ public:
 		* dKey,
 		* spacebar,
 		* noKey;
+
+	bool isJumping = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player State Manager")
+	APlayerStateManager* playerStates;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Speed")
 	float maxSpeed = 500;

@@ -3,7 +3,7 @@
 
 #include "Shrek.h"
 #include "Command.h"
-#include "State.h"
+#include "AllPlayerStates.h"
 
 // Sets default values
 AShrek::AShrek()
@@ -31,8 +31,7 @@ void AShrek::BeginPlay()
 	noKey = new IdleCommand();
 	noKey->shrek = this;
 
-	
-	aKey->shrek->currentState = aKey->idleState;
+	currentState = playerStates->idleState;
 }
 
 // Called every frame

@@ -120,12 +120,25 @@ public:
 			);
 		}
 
-		shrek->LaunchCharacter(FVector(0, 0, 500.0f), true, true);
+		if (shrek->GetCharacterMovement()->IsMovingOnGround())
+		{
+			shrek->isJumping = false;
+		}
+
+		if (!shrek->isJumping)
+		{
+			shrek->isJumping = true;
+			shrek->LaunchCharacter(FVector(0, 0, 500.0f), true, true);
+		}
+		
 	}
 
 	void OnUpdate(AShrek* shrek, float DeltaTime) override
 	{
-
+		if (shrek->GetCharacterMovement()->IsMovingOnGround())
+		{
+			shrek->currentState = shrek->playerStates->idleState;
+		}
 	}
 
 	void OnExit(AShrek* shrek) override

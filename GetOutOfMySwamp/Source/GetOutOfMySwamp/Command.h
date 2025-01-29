@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Shrek.h"
 #include "State.h"
+#include "Shrek.h"
 
 /**
  * 
@@ -16,9 +16,6 @@ public:
 	virtual ~Command();
 	virtual void Execute() = 0;
 	AShrek* shrek;
-	IdleState* idleState = new IdleState();
-	WalkState* walkState = new WalkState();
-	JumpState* jumpState = new JumpState();
 
 };
 
@@ -28,8 +25,8 @@ public:
 	void Execute() override
 	{
 		shrek->currentState->OnExit(shrek);
-		walkState->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
-		shrek->currentState = walkState;
+		shrek->playerStates->walkState->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
+		shrek->currentState = shrek->playerStates->walkState;
 		shrek->currentState->OnEnter(shrek);
 
 	};
@@ -41,8 +38,8 @@ public:
 	void Execute() override
 	{
 		shrek->currentState->OnExit(shrek);
-		walkState->SetMovement(FVector(1.0f, 0.0f, 0.0f));
-		shrek->currentState = walkState;
+		shrek->playerStates->walkState->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+		shrek->currentState = shrek->playerStates->walkState;
 		shrek->currentState->OnEnter(shrek);
 	};
 };
@@ -53,7 +50,7 @@ public:
 	void Execute() override
 	{
 		shrek->currentState->OnExit(shrek);
-		shrek->currentState = idleState;
+		shrek->currentState = shrek->playerStates->idleState;
 		shrek->currentState->OnEnter(shrek);
 	};
 };
@@ -65,7 +62,9 @@ public:
 	void Execute() override
 	{
 		shrek->currentState->OnExit(shrek);
-		shrek->currentState = jumpState;
+		shrek->currentState = shrek->playerStates->jumpState;
+
+		if (shrek)
 		shrek->currentState->OnEnter(shrek);
 	};
 };
