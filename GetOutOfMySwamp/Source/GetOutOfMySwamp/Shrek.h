@@ -8,6 +8,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "PlayerStateManager.h"
+#include "SoundManager.h"
 #include "Shrek.generated.h"
 
 
@@ -32,6 +33,9 @@ public:
 		* noKey;
 
 	bool isJumping = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sound Manager")
+	ASoundManager* soundManager;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player State Manager")
 	APlayerStateManager* playerStates;

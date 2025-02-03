@@ -128,6 +128,7 @@ public:
 		if (!shrek->isJumping)
 		{
 			shrek->isJumping = true;
+			shrek->soundManager->PlaySound(shrek->soundManager->helloThere, shrek->GetActorLocation());
 			shrek->LaunchCharacter(FVector(0, 0, 500.0f), true, true);
 		}
 		
